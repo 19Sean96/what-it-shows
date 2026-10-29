@@ -39,16 +39,19 @@ different problems. The queued parser fix closes only the first one.
   path: the parser fix does not reach it. [Issue 2](https://github.com/19Sean96/what-it-shows/issues/2).
 - **`one-day`**: the date moves by one day, not a day-month swap. The invite arrives before the
   booking; a client in Lisbon gets Tuesday while one in Toronto gets Monday. That is time zones or
-  day boundaries, not the locale. The desk had already noted these reports in `desk-notes.json`; the
-  table used to count them under `parser`. [Issue 3](https://github.com/19Sean96/what-it-shows/issues/3).
+  day boundaries, not the locale. The desk noted these reports in `desk-notes.json`; the table files
+  them under `parser` by tenant and counts them there, in the note under it.
+  [Issue 3](https://github.com/19Sean96/what-it-shows/issues/3).
 
 ## How a report is placed
 
-`groupByCause` in `src/lib/kb/causes.ts` decides, from data the desk already has:
+`groupByCause` in `src/lib/kb/causes.ts` decides, from the tenant on file:
 
-1. a report the desk read as a one-day move is `one-day`;
-2. otherwise, a report from a day-first tenant that came through a booking-v3 form is `hint`;
-3. any other report from a day-first tenant is `parser`.
+1. a report from a day-first tenant that came through a booking-v3 form is `hint`;
+2. any other report from a day-first tenant is `parser`.
+
+The desk's notes (`desk-notes.json`) then mark the reports it read as a one-day move. They stay
+counted under `parser`, so issue 1 covers them too, and issue 3 covers them on their own.
 
 The intake tag does not decide it. Intake guesses from the reporter's browser, and the "tagged as"
 column shows how often that guess is wrong. The ticket export also repeats some reports; each id
