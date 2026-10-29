@@ -43,6 +43,20 @@ different problems. The queued parser fix closes only the first one.
   them under `parser` by tenant and counts them there, in the note under it.
   [Issue 3](https://github.com/19Sean96/what-it-shows/issues/3).
 
+## Where each one stands
+
+Engineering closed #4471 on 5 October:
+
+| cause | outcome | ticket |
+| --- | --- | --- |
+| `parser` | fixed: `fix(dates): parse dd/mm for eu locales` | [issue 1](https://github.com/19Sean96/what-it-shows/issues/1), closed |
+| `hint` | won't fix: booking-v3 form retired | [issue 2](https://github.com/19Sean96/what-it-shows/issues/2), closed |
+| one-day move | not in the update; the dd/mm fix does not change a one-day move | [issue 3](https://github.com/19Sean96/what-it-shows/issues/3), **open** |
+
+<Callout kind="warn">
+Closing #4471 did not close the one-day problem. Keep issue 3 open until engineering looks at it.
+</Callout>
+
 ## How a report is placed
 
 `groupByCause` in `src/lib/kb/causes.ts` decides, from the tenant on file:

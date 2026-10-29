@@ -9,11 +9,11 @@
 		<link href="../../../_app/immutable/chunks/CiqoZ2A1.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/CHfFqfNT.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DQG8lHS1.js" rel="modulepreload">
-		<link href="../../../_app/immutable/entry/app.5Ew1IhQt.js" rel="modulepreload">
+		<link href="../../../_app/immutable/entry/app.BdYXOBsB.js" rel="modulepreload">
 		<link href="../../../_app/immutable/nodes/0.CTf4XHXr.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
-		<link href="../../../_app/immutable/nodes/5.DN84_JFw.js" rel="modulepreload">
-		<link href="../../../_app/immutable/chunks/BgjiP2FH.js" rel="modulepreload">
+		<link href="../../../_app/immutable/nodes/5.Tl9Copth.js" rel="modulepreload">
+		<link href="../../../_app/immutable/chunks/CPxdSNTn.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DkoUumqI.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DmrTCt8m.js" rel="modulepreload">
 		<link href="../../../_app/immutable/chunks/DcZ9TEUN.js" rel="modulepreload">
@@ -31,7 +31,7 @@ tenants type what it says, and the form then reads the date day first. Same swap
 path: the parser fix does not reach it. <a href="https://github.com/19Sean96/what-it-shows/issues/2" rel="nofollow">Issue 2</a>.</li> <li><strong><code>one-day</code></strong>: the date moves by one day, not a day-month swap. The invite arrives before the
 booking; a client in Lisbon gets Tuesday while one in Toronto gets Monday. That is time zones or
 day boundaries, not the locale. The desk noted these reports in <code>desk-notes.json</code>; the table files
-them under <code>parser</code> by tenant and counts them there, in the note under it. <a href="https://github.com/19Sean96/what-it-shows/issues/3" rel="nofollow">Issue 3</a>.</li></ul> <h2>How a report is placed</h2> <p><code>groupByCause</code> in <code>src/lib/kb/causes.ts</code> decides, from the tenant on file:</p> <ol><li>a report from a day-first tenant that came through a booking-v3 form is <code>hint</code>;</li> <li>any other report from a day-first tenant is <code>parser</code>.</li></ol> <p>The desk’s notes (<code>desk-notes.json</code>) then mark the reports it read as a one-day move. They stay
+them under <code>parser</code> by tenant and counts them there, in the note under it. <a href="https://github.com/19Sean96/what-it-shows/issues/3" rel="nofollow">Issue 3</a>.</li></ul> <h2>Where each one stands</h2> <p>Engineering closed #4471 on 5 October:</p> <table><thead><tr><th>cause</th><th>outcome</th><th>ticket</th></tr></thead><tbody><tr><td><code>parser</code></td><td>fixed: <code>fix(dates): parse dd/mm for eu locales</code></td><td><a href="https://github.com/19Sean96/what-it-shows/issues/1" rel="nofollow">issue 1</a>, closed</td></tr><tr><td><code>hint</code></td><td>won’t fix: booking-v3 form retired</td><td><a href="https://github.com/19Sean96/what-it-shows/issues/2" rel="nofollow">issue 2</a>, closed</td></tr><tr><td>one-day move</td><td>not in the update; the dd/mm fix does not change a one-day move</td><td><a href="https://github.com/19Sean96/what-it-shows/issues/3" rel="nofollow">issue 3</a>, <strong>open</strong></td></tr></tbody></table> <aside class="warn svelte-17bri61"><!---->Closing #4471 did not close the one-day problem. Keep issue 3 open until engineering looks at it.<!----></aside><!----> <h2>How a report is placed</h2> <p><code>groupByCause</code> in <code>src/lib/kb/causes.ts</code> decides, from the tenant on file:</p> <ol><li>a report from a day-first tenant that came through a booking-v3 form is <code>hint</code>;</li> <li>any other report from a day-first tenant is <code>parser</code>.</li></ol> <p>The desk’s notes (<code>desk-notes.json</code>) then mark the reports it read as a one-day move. They stay
 counted under <code>parser</code>, so issue 1 covers them too, and issue 3 covers them on their own.</p> <p>The intake tag does not decide it. Intake guesses from the reporter’s browser, and the “tagged as”
 column shows how often that guess is wrong. The ticket export also repeats some reports; each id
 counts once.</p> <h2>Why they were merged</h2> <p><a href="/kb/decisions/0001-dedupe-by-subject">Decision 0001</a> merges reports whose subject lines match.
@@ -43,16 +43,16 @@ mark it known.</li> <li>The desk’s own notes held the third problem. Put what 
 			
 			<script>
 				{
-					__sveltekit_1jxgono = {
+					__sveltekit_1xn8oi9 = {
 						base: new URL("../../..", location).pathname.slice(0, -1),
-						version: "1793298958309"
+						version: "1793299041780"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../../_app/immutable/entry/start.DHGSJWrH.js").then(async (kit) => {
-						kit.init(__sveltekit_1jxgono);
-						const app = await import("../../../_app/immutable/entry/app.5Ew1IhQt.js");
+						kit.init(__sveltekit_1xn8oi9);
+						const app = await import("../../../_app/immutable/entry/app.BdYXOBsB.js");
 						kit.start(app, element, {
 							node_ids: [0, 5],
 							data: [null,null],
