@@ -1,0 +1,75 @@
+---
+layout: runbook
+title: '#4471 · three problems, not one'
+owner: 19Sean96
+status: open
+reviewed: 2026-10-29
+signature: 19Sean96
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const filed = {
+    parser: 'https://github.com/19Sean96/what-it-shows/issues/1',
+    hint: 'https://github.com/19Sean96/what-it-shows/issues/2',
+    'one-day': 'https://github.com/19Sean96/what-it-shows/issues/3',
+  };
+</script>
+
+[#4471](/kb/incidents/4471) says one issue, one fix queued. The reports merged into it describe three
+different problems. The queued parser fix closes only the first one.
+
+<Callout kind="warn">
+#4471 is not one bug. Each problem below now has its own ticket, with its own count.
+</Callout>
+
+## The three problems
+
+<CauseTable ticket={4471} {filed} />
+
+- **`parser`**: the shared parser reads every date month first, and these tenants write the day
+  first. A booking for 7 April goes out as 4 July. This is the bug #4471 describes.
+  [Issue 1](https://github.com/19Sean96/what-it-shows/issues/1).
+- **`hint`**: the booking-v3 form prints `MM/DD/YYYY` under its date field. People at day-first
+  tenants type what it says, and the form then reads the date day first. Same swap, different code
+  path: the parser fix does not reach it. [Issue 2](https://github.com/19Sean96/what-it-shows/issues/2).
+- **`one-day`**: the date moves by one day, not a day-month swap. The invite arrives before the
+  booking; a client in Lisbon gets Tuesday while one in Toronto gets Monday. That is time zones or
+  day boundaries, not the locale. The desk had already noted these reports in `desk-notes.json`; the
+  table used to count them under `parser`. [Issue 3](https://github.com/19Sean96/what-it-shows/issues/3).
+
+## How a report is placed
+
+`groupByCause` in `src/lib/kb/causes.ts` decides, from data the desk already has:
+
+1. a report the desk read as a one-day move is `one-day`;
+2. otherwise, a report from a day-first tenant that came through a booking-v3 form is `hint`;
+3. any other report from a day-first tenant is `parser`.
+
+The intake tag does not decide it. Intake guesses from the reporter's browser, and the "tagged as"
+column shows how often that guess is wrong. The ticket export also repeats some reports; each id
+counts once.
+
+## Why they were merged
+
+[Decision 0001](/kb/decisions/0001-dedupe-by-subject) merges reports whose subject lines match.
+All three problems produce the same subjects ("Wrong day on the invite", "Date is wrong"), so
+subject matching put them in one ticket. Its consequences list the opposite risk, the same bug
+under different subjects; it does not cover different bugs under one subject. A new decision record
+should replace it.
+
+## Since April
+
+<QueueTimeline ticket={4471} />
+
+## Lessons
+
+- A count is only as good as the merge rule behind it. Read a sample of a big ticket before you
+  mark it known.
+- The desk's own notes held the third problem. Put what you notice into the logic, not a footnote.
+
+<RenderStamp {signature} />
