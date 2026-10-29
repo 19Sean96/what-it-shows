@@ -4,7 +4,7 @@ title: '#4471 · three problems, not one'
 owner: 19Sean96
 status: open
 reviewed: 2026-10-29
-signature: 19Sean96
+signature: 'v1.eyJzdWIiOiI4MzAiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzI5OTA2MywiZXhwIjoxNzkzMzg1NDYzfQ.P4cYMFD9gZLE2LF9_V1JC-51Upx5ZKaieUBsZgKiny8'
 ---
 
 <script>
